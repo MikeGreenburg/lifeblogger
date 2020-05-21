@@ -1,32 +1,60 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8"/>-->
+<!--    <title>create</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--&lt;!&ndash;NAVBAR PARTIAL WILL GO HERE&ndash;&gt;-->
+<!--    <nav th:fragment="navbar">-->
+<!--        <ul>-->
+<!--            <li><a href="#">home</a></li>-->
+<!--            <li><a href="#">create</a></li>-->
+<!--            <li><a href="#">register</a></li>-->
+<!--            <li><a href="#">login</a></li>-->
+<!--            <li><a href="#">logout</a></li>-->
+<!--        </ul>-->
+<!--    </nav>-->
+
+<!--<h1>This is going to be the form to create a new blog post</h1>-->
+<!--<label>-->
+<!--    <input type="text" placeholder="text goes here"/>-->
+<!--</label>-->
+
+
+<!--&lt;!&ndash;FOOTER PARTIAL WILL GO HERE&ndash;&gt;-->
+<!--    <ul>-->
+<!--        <li>home</li>-->
+<!--        <li>about</li>-->
+<!--        <li>2020</li>-->
+<!--    </ul>-->
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>create</title>
+    <title>Ads</title>
+    <div th:replace="partials/partials :: head"></div>
 </head>
 <body>
-<!--NAVBAR PARTIAL WILL GO HERE-->
-    <nav th:fragment="navbar">
-        <ul>
-            <li><a href="#">home</a></li>
-            <li><a href="#">create</a></li>
-            <li><a href="#">register</a></li>
-            <li><a href="#">login</a></li>
-            <li><a href="#">logout</a></li>
-        </ul>
-    </nav>
+<nav th:replace="partials/partials :: navbar"></nav>
 
-<h1>This is going to be the form to create a new blog post</h1>
-<label>
-    <input type="text" placeholder="text goes here"/>
-</label>
+<div class="container">
+    <h2>Create Ad</h2>
 
+    <form th:action="@{/ads/create}" th:method="post" th:object="${ad}">
+        <input type="hidden" th:field="*{id}" />
+        <input type="hidden" th:field="*{user}" />
+        <label for="title">Title: </label>
+        <input type="text" th:field="*{title}" id="title" class="field"/>
+        <br><br>
+        <label for="desc">Description:</label><br>
+        <textarea th:field="*{description}" id="desc" class="field" rows="4" cols="50"></textarea><br>
+        <button>Save</button>
+    </form>
+</div>
 
-<!--FOOTER PARTIAL WILL GO HERE-->
-    <ul>
-        <li>home</li>
-        <li>about</li>
-        <li>2020</li>
-    </ul>
+<div th:replace="partials/partials :: footer"></div>
 </body>
 </html>
